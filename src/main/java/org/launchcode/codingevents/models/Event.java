@@ -2,6 +2,7 @@ package org.launchcode.codingevents.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -20,18 +21,58 @@ public class Event {
     @Size(max=500, message="Description too long!")
     private String description;
 
-    @NotBlank
+    @NotBlank(message="Location is Required")
+    @NotNull(message="Location is Required")
+    @Size(min=1)
+    private String location;
+
+    @NotBlank(message = "Invalid email. Try again.")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    @NotBlank
+    @NotNull
+    private boolean register;
+
+    @NotBlank(message="Please enter a number > 0")
+    @NotNull(message="Please enter a number > 0")
+    private int numberOfAttendees;
+
+    public Event(String name, String description, String location, String contactEmail, boolean register) {
         this.name = name;
         this.description = description;
+        this.location = location;
         this.contactEmail = contactEmail;
+        this.register = true;
+        this.numberOfAttendees= numberOfAttendees;
         this.id = nextId;
         nextId++;
     }
     public Event(){}
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isRegister() {
+        return register;
+    }
+
+    public void setRegister(boolean register) {
+        this.register = register;
+    }
 
     public String getName() {
         return name;
