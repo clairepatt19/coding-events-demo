@@ -1,9 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -34,6 +31,7 @@ public class Event {
     @NotNull
     private boolean register;
 
+    @DecimalMin("0")
     @NotBlank(message="Please enter a number > 0")
     @NotNull(message="Please enter a number > 0")
     private int numberOfAttendees;

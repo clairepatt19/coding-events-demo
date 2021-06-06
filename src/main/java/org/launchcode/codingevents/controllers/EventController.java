@@ -39,8 +39,12 @@ public class EventController {
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Event");
             model.addAttribute("event", new Event());
+            if(newEvent.isRegister()){
+                model.addAttribute("register",true);
+            }
             return "events/create";
         }
+
         EventData.add(newEvent);
         return "redirect:";
     }
