@@ -20,7 +20,7 @@ public class Event {
 
     @NotBlank(message="Location is Required")
     @NotNull(message="Location is Required")
-    @Size(min=1)
+    @Size(max=500, message="Location too long!")
     private String location;
 
     @NotBlank(message = "Invalid email. Try again.")
@@ -29,19 +29,19 @@ public class Event {
 
     @NotBlank
     @NotNull
-    private boolean register;
+    private boolean registered;
 
-    @DecimalMin("0")
+    @DecimalMin("1")
     @NotBlank(message="Please enter a number > 0")
     @NotNull(message="Please enter a number > 0")
     private int numberOfAttendees;
 
-    public Event(String name, String description, String location, String contactEmail, boolean register) {
+    public Event(String name, String description, String location, String contactEmail, boolean registered) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.contactEmail = contactEmail;
-        this.register = true;
+        this.registered = registered;
         this.numberOfAttendees= numberOfAttendees;
         this.id = nextId;
         nextId++;
@@ -65,11 +65,11 @@ public class Event {
     }
 
     public boolean isRegister() {
-        return register;
+        return registered;
     }
 
     public void setRegister(boolean register) {
-        this.register = register;
+        this.registered = registered;
     }
 
     public String getName() {

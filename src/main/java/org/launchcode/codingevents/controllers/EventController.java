@@ -36,15 +36,12 @@ public class EventController {
     @PostMapping("create")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
                                          Errors errors, Model model) {
-        if(errors.hasErrors()){
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             model.addAttribute("event", new Event());
-            if(newEvent.isRegister()){
-                model.addAttribute("register",true);
-            }
-            return "events/create";
         }
-
+        return "events/create";
+    }else
         EventData.add(newEvent);
         return "redirect:";
     }
