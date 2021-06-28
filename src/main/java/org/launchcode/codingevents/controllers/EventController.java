@@ -3,6 +3,7 @@ package org.launchcode.codingevents.controllers;
 import org.launchcode.codingevents.data.EventCategoryRepository;
 import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventType;
 import org.launchcode.codingevents.models.EventCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +24,13 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    //findAll, save, findById
+
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
     @GetMapping
-    public String displayAllEvents(@RequestParam(required=false) Integer categoryId, Model model) {
+    public String displayAllEvents(Model model) {
 
         if (categoryId==null) {
             model.addAttribute("title", "All Events");
