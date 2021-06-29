@@ -11,26 +11,18 @@ public class EventCategory {
 
     @Id
     @GeneratedValue
-    public int id;
+    private int id;
 
-    @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
-    public String name;
+    private String name;
 
-    public EventCategory(int id, String name) {
-        this.id = id;
-        this.name = name;
-
+    public EventCategory(@Size(min=3,message = "Name must be at least 3 chars long") String name){
+       this.name = name;
     }
 
     public EventCategory(){};
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -40,4 +32,18 @@ public class EventCategory {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this==o)return true;
+        if(o==null || getClass() != o.getClass()) return false;
+        EventCategory that = (EventCategory) o;
+        return id == that.id;
+    }
+
 }
